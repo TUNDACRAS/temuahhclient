@@ -1,61 +1,769 @@
-    new ButtonInfo { buttonText = "PRESS THIS FOR CHANGELOGS", method =() => ModsCLASS.welcometext(), isTogglable = true, toolTip = "skibidi tol"},
-    new ButtonInfo { buttonText = "PRESS THIS BEFORE CHANGING SERVERS (ANTIBAN))", method =() => ModsCLASS.NOBAN(), isTogglable = true, toolTip = "disconnects u"},
-    new ButtonInfo { buttonText = "<color=red>Restart Game</color>", method =() => ModsCLASS.LEMMINGSUCKSASS(), isTogglable = false, toolTip = "Opens settings"},
-    new ButtonInfo { buttonText = "Settings", method =() => SettingsMods.EnterSettings(), isTogglable = false, toolTip = "Opens settings"},
-    new ButtonInfo { buttonText = "Op Mods", method =() => SettingsMods.Opmods(), isTogglable = false, toolTip = "Opens Op Mods"},
-    new ButtonInfo { buttonText = "Mods", method =() => SettingsMods.MovementSettings(), isTogglable = false, toolTip = "Opens Mods"},
-    new ButtonInfo { buttonText = "AdvantageMods", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens Advantage"},
-    new ButtonInfo { buttonText = "LegitMods", method =() => SettingsMods.Legit(), isTogglable = false, toolTip = "Opens Legit"},
-    new ButtonInfo { buttonText = "AtticMods", method =() => SettingsMods.atticModz(), isTogglable = false, toolTip = "Opens Attic Mods"},
-},
 
-new ButtonInfo[] { // Op Mods
-    new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
-    new ButtonInfo { buttonText = "LAG ALL / CRASH ALL [ONLY ATTIC] <color=purple>BETA</color>", method =() => ModsCLASS.LAGATTIC(), isTogglable = true, toolTip = "newest lag gun / crash gun idk if it works tho"},
+    internal class ModsCLASS
+    {
 
-},
+        public static float nameCycleDelay;
+        public static int nameCycleIndex;
 
-new ButtonInfo[] { // Menu / Actual Settings
-    new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "home"},
-    new ButtonInfo { buttonText = "Right Hand", enableMethod =() => SettingsMods.RightHand(), disableMethod =() => SettingsMods.LeftHand(), toolTip = "Puts the menu on your right hand."},
-    new ButtonInfo { buttonText = "Notifications", enableMethod =() => SettingsMods.EnableNotifications(), disableMethod =() => SettingsMods.DisableNotifications(), enabled = !disableNotifications, toolTip = "Toggles the notifications."},
-    new ButtonInfo { buttonText = "FPS Counter", enableMethod =() => SettingsMods.EnableFPSCounter(), disableMethod =() => SettingsMods.DisableFPSCounter(), enabled = fpsCounter, toolTip = "Toggles the FPS counter."},
-},
+        public static void WASDMOVEMENT() //f3 lol
+        {
+            if (UnityInput.Current.GetKey(KeyCode.W))
+            {
+                GorillaLocomotion.Player.Instance.transform.position += GorillaLocomotion.Player.Instance.headCollider.transform.forward * Time.deltaTime * 3.5f;
+                GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            if (UnityInput.Current.GetKey(KeyCode.S))
+            {
+                GorillaLocomotion.Player.Instance.transform.position += GorillaLocomotion.Player.Instance.headCollider.transform.forward * Time.deltaTime * -3.5f;
+                GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            if (UnityInput.Current.GetKey(KeyCode.A))
+            {
+                GorillaLocomotion.Player.Instance.transform.position += GorillaLocomotion.Player.Instance.headCollider.transform.right * Time.deltaTime * -3.5f;
+                GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            if (UnityInput.Current.GetKey(KeyCode.D))
+            {
+                GorillaLocomotion.Player.Instance.transform.position += GorillaLocomotion.Player.Instance.headCollider.transform.right * Time.deltaTime * 3.5f;
+                GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            if (UnityInput.Current.GetKey(KeyCode.A))
+            {
+                GorillaLocomotion.Player.Instance.transform.position += GorillaLocomotion.Player.Instance.headCollider.transform.right * Time.deltaTime * -3.5f;
+                GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            if (UnityInput.Current.GetKey(KeyCode.Space))
+            {
+                GorillaLocomotion.Player.Instance.transform.position += GorillaLocomotion.Player.Instance.headCollider.transform.up * Time.deltaTime * 3.5f;
+                GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+            if (UnityInput.Current.GetKey(KeyCode.LeftControl))
+            {
+                GorillaLocomotion.Player.Instance.transform.position += GorillaLocomotion.Player.Instance.headCollider.transform.up * Time.deltaTime * -3.5f;
+                GorillaLocomotion.Player.Instance.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            }
+        }
 
-new ButtonInfo[] { // Mods 
-    new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
-    new ButtonInfo { buttonText = "PLATFORMS", method =() => ModsCLASS.PLATFORMS(), isTogglable = true, toolTip = "Platforms, self explanatory"},
-    new ButtonInfo { buttonText = "Invis Monke", method =() => ModsCLASS.InvisMonkeMod(), isTogglable = true, toolTip = "Invis Monke But better "},
-    new ButtonInfo { buttonText = "Ghost Monke <color=green>NEW</color>", method =() => ModsCLASS.InvisMonkeMod(), isTogglable = true, toolTip = "Invis Monke But better "},
-    new ButtonInfo { buttonText = "Solid Water", method =() => ModsCLASS.SolidWater(), disableMethod =() => ModsCLASS.FixWater(), isTogglable = true, toolTip = "jus makes the water solid"},
-    new ButtonInfo { buttonText = "Faster swimming", method =() => ModsCLASS.FastSwim(), disableMethod =() => ModsCLASS.normalSwim(), isTogglable = true, toolTip = "makes u become fast in water"},
-    new ButtonInfo { buttonText = "OP Ropes", method =() => ModsCLASS.FastRopes(), disableMethod =() => ModsCLASS.RegularRopes(), isTogglable = true, toolTip = "makes the ropes weaker so u push them harder"},
-    new ButtonInfo { buttonText = "Rope Control", method =() => ModsCLASS.CanyonsRopeControl(), isTogglable = true, toolTip = "use joystick"},
-    new ButtonInfo { buttonText = "Fast Monsters", method =() => ModsCLASS.SafetyFastMonsters(), isTogglable = true, toolTip = "Fast Monsters"},
-    new ButtonInfo { buttonText = "Checkpoint", method =() => ModsCLASS.Checkpoint(), isTogglable = true, toolTip = "checkpoints yk"},
-},
+        public static void J3VUNameCycle()
+        {
+            if (Time.time > nameCycleDelay)
+            {
+                nameCycleIndex++;
+                if (nameCycleIndex > 4)
+                {
+                    nameCycleIndex = 1;
+                }
 
-new ButtonInfo[] { // Advantage
-    new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "home"},
-    new ButtonInfo { buttonText = "Anti Tag", method =() => ModsCLASS.AntiTag(), isTogglable = true, toolTip = "AntiTag"},
-},
+                string newName = GetNewName(nameCycleIndex);
+                ChangePhotonPlayerName(newName);
 
-new ButtonInfo[] { // Legit
-    new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
-    new ButtonInfo { buttonText = "Oculus Menu reporting (Bypasses AntiReport) <color=green>NEW</color>", method =() => ModsCLASS.OculusReportMenu(), isTogglable = true, toolTip = "oculus menu (reporting)"},
-},
+                nameCycleDelay = Time.time + 1f;
+                RPCProtection();
+            }
+        }
 
-new ButtonInfo[] { // Room Mods
-    new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
-    new ButtonInfo { buttonText = "AntiReport <color=magenta>(BETA)</color>", method =() => ModsCLASS.AntiReportDisconnect(), isTogglable = true, toolTip = "disconnects you when some dumbass reports you (MIGHT BE DETECTED) ALSO Creds 2 the creator"},
-    new ButtonInfo { buttonText = "AntiMod", method =() => ModsCLASS.antimod(), isTogglable = true, toolTip = "disconnects when a moderator is in there or joins the lobby"},
-    new ButtonInfo { buttonText = "Lemming Name Cycle", method =() => ModsCLASS.lemmingdiedcycle(), isTogglable = true, toolTip = "cycle = <color=red> Warning, Lemming, Has, Died "},
-    new ButtonInfo { buttonText = "JV3U Name Cycle", method =() => ModsCLASS.J3VUNameCycle(), isTogglable = true, toolTip = "cycle = <color=red> Warning, Lemming, Has, Died "},
-    new ButtonInfo { buttonText = "Disable Network Triggers", method =() => ModsCLASS.DisableNetworkTriggers(), disableMethod =() => ModsCLASS.EnableNetworkTriggers(), isTogglable = true, toolTip = "disables nw triggers"},
+        public static void NOBAN()
+        {
+            PhotonNetwork.LocalPlayer.NickName.Equals("BITCH");
+        }
+        public static void LEMMINGSUCKSASS()
+        {
+            if (PhotonNetwork.InRoom)
+            {
+                Application.Quit();
+                Process.Start("steam://rungameid/1533390");
+            }
+        }
 
-},
+        public static void joinrandoroom()
+        {
+            PhotonNetwork.CreateRoom(roomName);
+        }
 
- new ButtonInfo[] { // Attic Mods
-    new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
-    new ButtonInfo { buttonText = "Grab Block <color=purple>BETA</color>", method =() => ModsCLASS.Grabskib(), isTogglable = true, toolTip = "Grabs a certain block i found while using unity explorer"},
-     new ButtonInfo { buttonText = "Grab Fence <color=purple>BETA</color>", method =() => ModsCLASS.grabfenceskib(), isTogglable = true, toolTip = "Grabs a certain block i found while using unity explorer"},
+        public static void welcometext()
+        {
+            NotifiLib.SendNotification("welcome to the menu, i have added an antiban system but it ruins the fun please don't leave servers with the disconnect button");
+        }
+
+        // (UnityInput.Current.GetKey(KeyCode.A))
+
+        public static void GhostMonkePc()
+        {
+            {
+                if (UnityInput.Current.GetKey(KeyCode.G))
+                {
+                    GorillaTagger.Instance.offlineVRRig.enabled = false;
+
+                    GameObject l = GameObject.CreatePrimitive(PrimitiveType.Sphere); //gives you two orange balls when you activate it
+                    UnityEngine.Object.Destroy(l.GetComponent<Rigidbody>());
+                    UnityEngine.Object.Destroy(l.GetComponent<SphereCollider>());
+
+                    l.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    l.transform.position = GorillaTagger.Instance.leftHandTransform.position;
+
+                    GameObject r = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    UnityEngine.Object.Destroy(r.GetComponent<Rigidbody>());
+                    UnityEngine.Object.Destroy(r.GetComponent<SphereCollider>());
+
+                    r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
+
+
+
+                    UnityEngine.Object.Destroy(l, Time.deltaTime);
+                    UnityEngine.Object.Destroy(r, Time.deltaTime);
+                }
+                else
+                {
+                    GorillaTagger.Instance.offlineVRRig.enabled = true;
+                    RPCProtection();
+                }
+            }
+        }
+        public static void GhostMonke()
+        {
+            bool Primary = ControllerInputPoller.instance.rightControllerSecondaryButton;
+            {
+                if (Primary == true)
+                {
+                    GorillaTagger.Instance.offlineVRRig.enabled = false;
+
+                    GameObject l = GameObject.CreatePrimitive(PrimitiveType.Sphere); //gives you two orange balls when you activate it
+                    UnityEngine.Object.Destroy(l.GetComponent<Rigidbody>());
+                    UnityEngine.Object.Destroy(l.GetComponent<SphereCollider>());
+
+                    l.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    l.transform.position = GorillaTagger.Instance.leftHandTransform.position;
+
+                    GameObject r = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    UnityEngine.Object.Destroy(r.GetComponent<Rigidbody>());
+                    UnityEngine.Object.Destroy(r.GetComponent<SphereCollider>());
+
+                    r.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+                    r.transform.position = GorillaTagger.Instance.rightHandTransform.position;
+
+
+
+                    UnityEngine.Object.Destroy(l, Time.deltaTime);
+                    UnityEngine.Object.Destroy(r, Time.deltaTime);
+                }
+                else
+                {
+                    GorillaTagger.Instance.offlineVRRig.enabled = true;
+                    RPCProtection();
+                }
+            }
+        }
+
+
+        public static void OculusReportMenu()
+        {
+            bool Primary = ControllerInputPoller.instance.rightControllerSecondaryButton;
+            if (Primary)
+            {
+                FakeOculusMenu();
+                GameObject GorillaMetaReport = GameObject.Find("Miscellaneous Scripts/MetaReporting");
+                GorillaMetaReport.GetComponent<GorillaMetaReport>().enabled = true;
+                GorillaMetaReport.GetComponent<GorillaMetaReport>().Invoke("StartOverlay", 0.1f);
+                RPCProtection();
+            }
+        }
+
+        
+        public static void DisableNetworkTriggers()
+        {
+            GameObject.Find("Environment Objects/TriggerZones_Prefab/JoinRoomTriggers_Prefab").SetActive(false);
+            RPCProtection();
+        }
+
+        public static void EnableNetworkTriggers()
+        {
+            GameObject.Find("Environment Objects/TriggerZones_Prefab/JoinRoomTriggers_Prefab").SetActive(true);
+            RPCProtection();
+        }
+
+        public static void GULLIBLEFORTHINKINGITWORKS()
+        {
+            PhotonNetwork.Disconnect();
+            NotifiLib.SendNotification("<color=red> get trolled!!! :D</color>");
+        }
+
+        public static void antimod()
+        {
+            foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
+            {
+                if (!vrrig.isOfflineVRRig && vrrig.concatStringOfCosmeticsAllowed.Contains("LBAAK"))
+                {
+                    PhotonNetwork.Disconnect();
+                    RPCProtection();
+                }
+            }
+        }
+
+        public static Color outlines = new Color32(139, 126, 172, 255);
+        public static GameObject outlinebg;
+
+        public static void DRAWING()
+        {
+            outlinebg = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            outlinebg.transform.rotation = Quaternion.identity;
+            outlinebg.transform.localScale = new Vector3(0.09f, 1.01f, 1.11f);
+            outlinebg.transform.position = new Vector3(0.05f, 0f, 0f);
+            outlinebg.GetComponent<Renderer>().material.color = outlines;
+            UnityEngine.Object.Destroy(outlinebg.GetComponent<Rigidbody>());
+            UnityEngine.Object.Destroy(outlinebg.GetComponent<BoxCollider>());
+            NotifiLib.SendNotification("Thanks 2 the guy that made this");
+            RPCProtection();
+        }
+
+        public static void Grabskib()
+        {
+            GrabBlockL();
+            GrabBlockR();
+        }
+
+        public static void GrabBlockR()
+        {
+            bool Primary = ControllerInputPoller.instance.rightControllerSecondaryButton;
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                GorillaLocomotion.Player.Instance.rightControllerTransform.position = GameObject.Find("SnapBrickBumpGlow(Clone)").transform.position;
+                RPCProtection();
+            }
+            if (UnityInput.Current.GetKeyDown((KeyCode.G)))
+            {
+                GorillaLocomotion.Player.Instance.rightControllerTransform.position = GameObject.Find("SnapBrickBumpGlow(Clone)").transform.position;
+                RPCProtection();
+            }
+        }
+        public static void GrabBlockL()
+        {
+            if (ControllerInputPoller.instance.leftGrab)
+            {
+                GorillaLocomotion.Player.Instance.leftControllerTransform.position = GameObject.Find("SnapBrickBumpGlow(Clone)").transform.position;
+                RPCProtection();
+            }
+            if (UnityInput.Current.GetKeyDown((KeyCode.G)))
+            {
+                GorillaLocomotion.Player.Instance.leftControllerTransform.position = GameObject.Find("SnapBrickBumpGlow(Clone)").transform.position;
+                RPCProtection();
+            }
+        }
+
+        public static void FakeOculusMenu()
+        {
+            if (ControllerInputPoller.instance.rightControllerPrimaryButton)
+            {
+                GorillaLocomotion.Player.Instance.rightControllerTransform.transform.position = GorillaLocomotion.Player.Instance.bodyCollider.transform.position;
+                GorillaLocomotion.Player.Instance.leftControllerTransform.transform.position = GorillaLocomotion.Player.Instance.bodyCollider.transform.position;
+            }
+        }
+
+
+        public static string GetNewName(int index)
+        {
+            switch (index)
+            {
+                case 1:
+                    return "J3VU"; // put the names you want on this it will go from 1 to 4 
+                case 2:
+                    return "HAS";
+                case 3:
+                    return "BECOME";
+                case 4:
+                    return "HOSTILE";
+                default:
+                    return string.Empty;
+            }
+        }
+
+        public static void lemmingdiedcycle()
+        {
+            if (Time.time > nameCycleDelay)
+            {
+                nameCycleIndex++;
+                if (nameCycleIndex > 4)
+                {
+                    nameCycleIndex = 1;
+                }
+
+                string newName = LEMMINGDIEDCYCLE(nameCycleIndex);
+                ChangePhotonPlayerName(newName);
+
+                nameCycleDelay = Time.time + 1f;
+                RPCProtection();
+            }
+        }
+
+        public static string LEMMINGDIEDCYCLE(int index)
+        {
+            switch (index)
+            {
+                case 1:
+                    return "WARNING"; // put the names you want on this it will go from 1 to 4 
+                case 2:
+                    return "LEMMING";
+                case 3:
+                    return "HAS";
+                case 4:
+                    return "DIED";
+                default:
+                    return string.Empty;
+            }
+        }
+
+        public static void ChangePhotonPlayerName(string newName)
+        {
+            if (PhotonNetwork.LocalPlayer != null)
+            {
+                PhotonNetwork.LocalPlayer.NickName = newName;
+                RPCProtection();
+            }
+        }
+    
+
+
+    public static void DisableWater()
+        {
+            GameObject water = GameObject.Find("Beach/B_WaterVolumes");
+            Transform waterTransform = water.transform;
+            for (int i = 0; i < waterTransform.childCount; i++)
+            {
+                GameObject v = waterTransform.GetChild(i).gameObject;
+                v.layer = LayerMask.NameToLayer("TransparentFX");
+                RPCProtection();
+
+            }
+        }
+
+        public static void SolidWater()
+        {
+            GameObject water = GameObject.Find("Beach/B_WaterVolumes");
+            Transform waterTransform = water.transform;
+            for (int i = 0; i < waterTransform.childCount; i++)
+            {
+                GameObject v = waterTransform.GetChild(i).gameObject;
+                v.layer = LayerMask.NameToLayer("Default");
+                RPCProtection();
+            }
+        }
+
+        public static void FixWater()
+        {
+            GameObject water = GameObject.Find("Beach/B_WaterVolumes");
+            Transform waterTransform = water.transform;
+            for (int i = 0; i < waterTransform.childCount; i++)
+            {
+                GameObject v = waterTransform.GetChild(i).gameObject;
+                v.layer = LayerMask.NameToLayer("Water");
+                RPCProtection();
+            }
+        }
+
+        public static void FastSwim()
+        {
+            if (GorillaLocomotion.Player.Instance.InWater)
+            {
+                GorillaLocomotion.Player.Instance.gameObject.GetComponent<Rigidbody>().velocity *= 1.069f;
+                RPCProtection();
+            }
+        }
+
+        public static void normalSwim()
+        {
+            if (GorillaLocomotion.Player.Instance.InWater)
+            {
+                GorillaLocomotion.Player.Instance.gameObject.GetComponent<Rigidbody>().velocity *= 1f;
+                RPCProtection();
+            }
+        }
+
+        public static void RPCProtection()
+        {
+            GorillaNot.instance.rpcErrorMax = int.MaxValue;
+            GorillaNot.instance.rpcCallLimit = int.MaxValue;
+            GorillaNot.instance.logErrorMax = int.MaxValue;
+
+            PhotonNetwork.RemoveRPCs(PhotonNetwork.LocalPlayer);
+            PhotonNetwork.OpCleanRpcBuffer(GorillaTagger.Instance.myVRRig);
+            PhotonNetwork.RemoveBufferedRPCs(GorillaTagger.Instance.myVRRig.ViewID, null, null);
+            PhotonNetwork.RemoveRPCsInGroup(int.MaxValue);
+            PhotonNetwork.SendAllOutgoingCommands();
+            GorillaNot.instance.OnPlayerLeftRoom(PhotonNetwork.LocalPlayer);
+        }
+
+        private static float RopeDelay = 0f;
+        public static void CanyonsRopeControl()
+        {
+            Vector2 joy = ControllerInputPoller.instance.rightControllerPrimary2DAxis;
+
+            if ((Mathf.Abs(joy.x) > 0.3 || Mathf.Abs(joy.y) > 0.3) && Time.time > RopeDelay)
+            {
+                RopeDelay = Time.time + 0.25f;
+                foreach (GorillaRopeSwing rope in GameObject.FindObjectsOfType(typeof(GorillaRopeSwing)))
+                {
+                    RopeSwingManager.instance.SendSetVelocity_RPC(rope.ropeId, 1, new Vector3(joy.x * 50f, joy.y * 50f, 0f), true);
+                }
+            }
+        }
+
+        public static void FastRopes()
+        {
+            foreach (GorillaRopeSwingSettings settings in GameObject.FindObjectsOfType(typeof(GorillaRopeSwingSettings)))
+            {
+                if (settings.name.Contains("Default"))
+                {
+                    settings.inheritVelocityMultiplier = 4f;
+                    RPCProtection();
+                }
+            }
+        }
+
+        public static void RegularRopes()
+        {
+            foreach (GorillaRopeSwingSettings settings in GameObject.FindObjectsOfType(typeof(GorillaRopeSwingSettings)))
+            {
+                if (settings.name.Contains("Default"))
+                {
+                    settings.inheritVelocityMultiplier = 0.9f;
+                    RPCProtection();
+                }
+            }
+        }
+
+            public static void AntiReportDisconnect()
+        {
+            try
+            {
+                foreach (GorillaPlayerScoreboardLine line in GorillaScoreboardTotalUpdater.allScoreboardLines)
+                {
+                    if (line.linePlayer == NetworkSystem.Instance.LocalPlayer)
+                    {
+                        Transform report = line.reportButton.gameObject.transform;
+                        foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
+                        {
+                            if (vrrig != GorillaTagger.Instance.offlineVRRig)
+                            {
+                                float D1 = Vector3.Distance(vrrig.rightHandTransform.position, report.position);
+                                float D2 = Vector3.Distance(vrrig.leftHandTransform.position, report.position);
+
+                                float threshold = 0.35f;
+
+                                if (D1 < threshold || D2 < threshold)
+                                {
+                                    PhotonNetwork.Disconnect();
+                                    RPCProtection();
+                                    NotifiLib.SendNotification("<color=grey>[</color><color=red>ANTI-REPORT</color><color=grey>]</color> <color=white>Someone attempted to report you, you have been disconnected.</color>");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch { } // Not connected
+        }
+
+        public static void InvisMonkeMod()
+        {
+            if (ControllerInputPoller.instance.rightControllerSecondaryButton)
+            {
+                GorillaTagger.Instance.offlineVRRig.headBodyOffset.x = 180f;
+            }
+            else
+            {
+                GorillaTagger.Instance.offlineVRRig.headBodyOffset.x = 0f;
+                RPCProtection();
+            }
+        }
+
+        public static void InvisMonkePc()
+        {
+            if (UnityInput.Current.GetKey(KeyCode.G))
+            {
+                GorillaTagger.Instance.offlineVRRig.headBodyOffset.x = 180f;
+            }
+            else
+            {
+                GorillaTagger.Instance.offlineVRRig.headBodyOffset.x = 0f;
+                RPCProtection();
+            }
+        }
+
+        public static void AntiTag()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                AntiTagWorks();
+            }
+            else
+            {
+                NotifiLib.SendNotification("<color=red> YOU AREN'T MASTER PLEASE USE THIS WHEN YOU ARE MASTER");
+                RPCProtection();
+            }
+
+        }
+
+        public static void AntiTagWorks()
+        {
+            if (GorillaTagger.Instance.offlineVRRig.mainSkin.material.name.Contains("fected"))
+            {
+                return;
+            }
+            foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
+            {
+                if (vrrig.mainSkin.material.name.Contains("fected") && Vector3.Distance(vrrig.transform.position, GorillaTagger.Instance.offlineVRRig.transform.position) <= 7f)
+                {
+                    GorillaTagger.Instance.offlineVRRig.enabled = false;
+                    GorillaTagger.Instance.offlineVRRig.transform.position = Player.Instance.transform.position - new Vector3(0f, 7f, 0f);
+                }
+            }
+            GorillaTagger.Instance.offlineVRRig.enabled = true;
+        }
+
+        public static void PLATFORMSPC()
+        {
+            if (UnityInput.Current.GetKey(KeyCode.G))
+            {
+                GameObject existingPlatR = GameObject.Find("PlatR");
+                if (existingPlatR != null)
+                {
+                    GameObject.Destroy(existingPlatR);
+                }
+
+                GameObject PlatR = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                PlatR.name = "PlatR";
+                PlatR.transform.position = GorillaLocomotion.Player.Instance.rightControllerTransform.position;
+                PlatR.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                Destroy(PlatR.GetComponent<Collider>());
+                PlatR.AddComponent<BoxCollider>();
+                PlatR.GetComponent<Renderer>().material.color = Color.black;
+            }
+            else
+            {
+                GameObject existingPlatR = GameObject.Find("PlatR");
+                if (existingPlatR != null)
+                {
+                    GameObject.Destroy(existingPlatR);
+                }
+            }
+
+            if (UnityInput.Current.GetKey(KeyCode.H))
+            {
+                GameObject existingPlatL = GameObject.Find("PlatL");
+                if (existingPlatL != null)
+                {
+                    GameObject.Destroy(existingPlatL);
+                }
+
+                GameObject PlatL = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                PlatL.name = "PlatL";
+                PlatL.transform.position = GorillaLocomotion.Player.Instance.leftControllerTransform.position;
+                PlatL.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                Destroy(PlatL.GetComponent<Collider>());
+                PlatL.AddComponent<BoxCollider>();
+                PlatL.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else
+            {
+                GameObject existingPlatL = GameObject.Find("PlatL");
+                if (existingPlatL != null)
+                {
+                    GameObject.Destroy(existingPlatL);
+                }
+            }
+        }
+
+        public static void PLATFORMS()
+        {
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                GameObject existingPlatR = GameObject.Find("PlatR");
+                if (existingPlatR != null)
+                {
+                    GameObject.Destroy(existingPlatR);
+                }
+
+                GameObject PlatR = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                PlatR.name = "PlatR";
+                PlatR.transform.position = GorillaLocomotion.Player.Instance.rightControllerTransform.position;
+                PlatR.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                Destroy(PlatR.GetComponent<Collider>());
+                PlatR.AddComponent<BoxCollider>();
+                PlatR.GetComponent<Renderer>().material.color = Color.black;
+            }
+            else
+            {
+                GameObject existingPlatR = GameObject.Find("PlatR");
+                if (existingPlatR != null)
+                {
+                    GameObject.Destroy(existingPlatR);
+                }
+            }
+
+            if (ControllerInputPoller.instance.leftGrab)
+            {
+                GameObject existingPlatL = GameObject.Find("PlatL");
+                if (existingPlatL != null)
+                {
+                    GameObject.Destroy(existingPlatL);
+                }
+
+                GameObject PlatL = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                PlatL.name = "PlatL";
+                PlatL.transform.position = GorillaLocomotion.Player.Instance.leftControllerTransform.position;
+                PlatL.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                Destroy(PlatL.GetComponent<Collider>());
+                PlatL.AddComponent<BoxCollider>();
+                PlatL.GetComponent<Renderer>().material.color = Color.red;
+            }
+            else
+            {
+                GameObject existingPlatL = GameObject.Find("PlatL");
+                if (existingPlatL != null)
+                {
+                    GameObject.Destroy(existingPlatL);
+                }
+            }
+        }
+
+        private static void Destroy(Collider collider)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void SafetyFastMonsters()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                FastMonsters();
+            }
+            else
+            {
+                NotifiLib.SendNotification("<color=red>YOU AREN'T MASTER PLEASE WAIT FOR MASTER</color>");
+            }
+        }
+
+        public static GameObject CheckPoint;
+        private static string roomName;
+
+        public static void Checkpoint()
+        {
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                if (CheckPoint == null)
+                {
+                    CheckPoint = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    UnityEngine.Object.Destroy(CheckPoint.GetComponent<Rigidbody>());
+                    UnityEngine.Object.Destroy(CheckPoint.GetComponent<SphereCollider>());
+                    CheckPoint.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                }
+                CheckPoint.transform.position = GorillaTagger.Instance.rightHandTransform.position;
+            }
+            if (CheckPoint != null)
+            {
+                if (ControllerInputPoller.instance.rightControllerPrimaryButton)
+                {
+                    CheckPoint.GetComponent<Renderer>().material.color = Color.green;
+                    GorillaTagger.Instance.rigidbody.transform.position = CheckPoint.transform.position;
+                    GorillaTagger.Instance.rigidbody.velocity = Vector3.zero;
+                }
+                else
+                {
+                    CheckPoint.GetComponent<Renderer>().material.color = Color.green;
+                }
+            }
+            if (CheckPoint != null)
+            {
+                UnityEngine.Object.Destroy(CheckPoint);
+                CheckPoint = null;
+            }
+        }
+
+
+
+
+        //Here some code i dont but do need
+
+        public static void DisableCheckpoint()
+        {
+            if (CheckPoint != null)
+            {
+                UnityEngine.Object.Destroy(CheckPoint);
+                CheckPoint = null;
+            }
+        }
+
+        public static void LAGATTIC()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                Grabfence();
+            }
+            else
+            {
+                NotifiLib.SendNotification("<color=red>YOU AREN'T MASTER PLEASE BECOME MASTER</color>");
+            }
+        }
+
+        public static void grabfenceskib()
+        {
+            RGrabfence();
+            LGrabfence();
+        }
+
+        public static void Grabfence()
+        {
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                GameObject[] allGameObjects = GameObject.FindObjectsOfType<GameObject>();
+                List<GameObject> sna = new List<GameObject>();
+                foreach (GameObject obj in allGameObjects)
+                {
+                    if (obj.name.StartsWith("SnapPieceFence01(Clone)"))
+                    {
+                        sna.Add(obj);
+                    }
+                    foreach (GameObject snapPiece in sna)
+                    {
+                        snapPiece.transform.position = GorillaTagger.Instance.rightHandTransform.position;
+                    }
+                }
+            }
+        }
+
+        public static void RGrabfence()
+        {
+            if (ControllerInputPoller.instance.rightGrab)
+            {
+                GameObject.Find("SnapPieceFence01(Clone)").transform.position = GorillaTagger.Instance.rightHandTransform.transform.position;
+            }
+        }
+        public static void LGrabfence()
+        {
+            if (ControllerInputPoller.instance.leftGrab)
+            {
+                GameObject.Find("SnapPieceFence01(Clone)").transform.position = GorillaTagger.Instance.leftHandTransform.transform.position;
+            }
+        }
+
+
+        public static void FastMonsters()
+        {
+            foreach (MonkeyeAI monkeyeAI in UnityEngine.Object.FindObjectsOfType<MonkeyeAI>())
+            {
+                bool flag = (double)ControllerInputPoller.instance.rightControllerIndexFloat > 0.1;
+                if (flag)
+                {
+                    monkeyeAI.speed = 1f;
+                    RPCProtection();
+                }
+                else
+                {
+                    monkeyeAI.speed = 0.1f;
+                    RPCProtection();
+                }
+            }
+        }
+    }
+}
+

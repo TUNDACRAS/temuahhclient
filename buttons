@@ -1,0 +1,73 @@
+namespace StupidTemplate.Menu
+{
+    // CREDS 2 SOME mod creators
+    internal class Buttons
+    {
+        public static ButtonInfo[][] buttons = new ButtonInfo[][]
+        {
+            new ButtonInfo[] { // THINGY
+                new ButtonInfo { buttonText = "PRESS THIS FOR CHANGELOGS", method =() => ModsCLASS.welcometext(), isTogglable = true, toolTip = "skibidi tol"},
+                new ButtonInfo { buttonText = "PRESS THIS BEFORE CHANGING SERVERS (ANTIBAN))", method =() => ModsCLASS.NOBAN(), isTogglable = true, toolTip = "disconnects u"},
+                new ButtonInfo { buttonText = "<color=red>Restart Game</color>", method =() => ModsCLASS.LEMMINGSUCKSASS(), isTogglable = false, toolTip = "Opens settings"},
+                new ButtonInfo { buttonText = "Settings", method =() => SettingsMods.EnterSettings(), isTogglable = false, toolTip = "Opens settings"},
+                new ButtonInfo { buttonText = "Op Mods", method =() => SettingsMods.Opmods(), isTogglable = false, toolTip = "Opens Op Mods"},
+                new ButtonInfo { buttonText = "Mods", method =() => SettingsMods.MovementSettings(), isTogglable = false, toolTip = "Opens Mods"},
+                new ButtonInfo { buttonText = "AdvantageMods", method =() => SettingsMods.ProjectileSettings(), isTogglable = false, toolTip = "Opens Advantage"},
+                new ButtonInfo { buttonText = "LegitMods", method =() => SettingsMods.Legit(), isTogglable = false, toolTip = "Opens Legit"},
+                new ButtonInfo { buttonText = "AtticMods", method =() => SettingsMods.atticModz(), isTogglable = false, toolTip = "Opens Attic Mods"},
+            },
+
+            new ButtonInfo[] { // Op Mods
+                new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
+                new ButtonInfo { buttonText = "LAG ALL / CRASH ALL [ONLY ATTIC] <color=purple>BETA</color>", method =() => ModsCLASS.LAGATTIC(), isTogglable = true, toolTip = "newest lag gun / crash gun idk if it works tho"},
+
+            },
+
+            new ButtonInfo[] { // Menu / Actual Settings
+                new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "home"},
+                new ButtonInfo { buttonText = "Right Hand", enableMethod =() => SettingsMods.RightHand(), disableMethod =() => SettingsMods.LeftHand(), toolTip = "Puts the menu on your right hand."},
+                new ButtonInfo { buttonText = "Notifications", enableMethod =() => SettingsMods.EnableNotifications(), disableMethod =() => SettingsMods.DisableNotifications(), enabled = !disableNotifications, toolTip = "Toggles the notifications."},
+                new ButtonInfo { buttonText = "FPS Counter", enableMethod =() => SettingsMods.EnableFPSCounter(), disableMethod =() => SettingsMods.DisableFPSCounter(), enabled = fpsCounter, toolTip = "Toggles the FPS counter."},
+            },
+
+            new ButtonInfo[] { // Mods 
+                new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
+                new ButtonInfo { buttonText = "PLATFORMS", method =() => ModsCLASS.PLATFORMS(), isTogglable = true, toolTip = "Platforms, self explanatory"},
+                new ButtonInfo { buttonText = "Invis Monke", method =() => ModsCLASS.InvisMonkeMod(), isTogglable = true, toolTip = "Invis Monke But better "},
+                new ButtonInfo { buttonText = "Ghost Monke <color=green>NEW</color>", method =() => ModsCLASS.InvisMonkeMod(), isTogglable = true, toolTip = "Invis Monke But better "},
+                new ButtonInfo { buttonText = "Solid Water", method =() => ModsCLASS.SolidWater(), disableMethod =() => ModsCLASS.FixWater(), isTogglable = true, toolTip = "jus makes the water solid"},
+                new ButtonInfo { buttonText = "Faster swimming", method =() => ModsCLASS.FastSwim(), disableMethod =() => ModsCLASS.normalSwim(), isTogglable = true, toolTip = "makes u become fast in water"},
+                new ButtonInfo { buttonText = "OP Ropes", method =() => ModsCLASS.FastRopes(), disableMethod =() => ModsCLASS.RegularRopes(), isTogglable = true, toolTip = "makes the ropes weaker so u push them harder"},
+                new ButtonInfo { buttonText = "Rope Control", method =() => ModsCLASS.CanyonsRopeControl(), isTogglable = true, toolTip = "use joystick"},
+                new ButtonInfo { buttonText = "Fast Monsters", method =() => ModsCLASS.SafetyFastMonsters(), isTogglable = true, toolTip = "Fast Monsters"},
+                new ButtonInfo { buttonText = "Checkpoint", method =() => ModsCLASS.Checkpoint(), isTogglable = true, toolTip = "checkpoints yk"},
+            },
+
+            new ButtonInfo[] { // Advantage
+                new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "home"},
+                new ButtonInfo { buttonText = "Anti Tag", method =() => ModsCLASS.AntiTag(), isTogglable = true, toolTip = "AntiTag"},
+            },
+
+            new ButtonInfo[] { // Legit
+                new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
+                new ButtonInfo { buttonText = "Oculus Menu reporting (Bypasses AntiReport) <color=green>NEW</color>", method =() => ModsCLASS.OculusReportMenu(), isTogglable = true, toolTip = "oculus menu (reporting)"},
+            },
+
+            new ButtonInfo[] { // Room Mods
+                new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
+                new ButtonInfo { buttonText = "AntiReport <color=magenta>(BETA)</color>", method =() => ModsCLASS.AntiReportDisconnect(), isTogglable = true, toolTip = "disconnects you when some dumbass reports you (MIGHT BE DETECTED) ALSO Creds 2 the creator"},
+                new ButtonInfo { buttonText = "AntiMod", method =() => ModsCLASS.antimod(), isTogglable = true, toolTip = "disconnects when a moderator is in there or joins the lobby"},
+                new ButtonInfo { buttonText = "Lemming Name Cycle", method =() => ModsCLASS.lemmingdiedcycle(), isTogglable = true, toolTip = "cycle = <color=red> Warning, Lemming, Has, Died "},
+                new ButtonInfo { buttonText = "JV3U Name Cycle", method =() => ModsCLASS.J3VUNameCycle(), isTogglable = true, toolTip = "cycle = <color=red> Warning, Lemming, Has, Died "},
+                new ButtonInfo { buttonText = "Disable Network Triggers", method =() => ModsCLASS.DisableNetworkTriggers(), disableMethod =() => ModsCLASS.EnableNetworkTriggers(), isTogglable = true, toolTip = "disables nw triggers"},
+
+            },
+
+             new ButtonInfo[] { // Attic Mods
+                new ButtonInfo { buttonText = "Return Home", method =() => Global.ReturnHome(), isTogglable = false, toolTip = "Home"},
+                new ButtonInfo { buttonText = "Grab Block <color=purple>BETA</color>", method =() => ModsCLASS.Grabskib(), isTogglable = true, toolTip = "Grabs a certain block i found while using unity explorer"},
+                 new ButtonInfo { buttonText = "Grab Fence <color=purple>BETA</color>", method =() => ModsCLASS.grabfenceskib(), isTogglable = true, toolTip = "Grabs a certain block i found while using unity explorer"},
+            },
+        };
+    }
+}
